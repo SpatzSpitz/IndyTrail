@@ -1,17 +1,21 @@
-# Standard: im Repo LF, Worktree je nach OS
-* text=auto eol=lf
+# Textdateien automatisch normalisieren
+* text=auto
 
-# Scripts & Wrapper
+# Kotlin/Gradle/Skripte immer mit LF im Repo
+*.kt text eol=lf
+*.kts text eol=lf
+*.gradle text eol=lf
+*.md text eol=lf
 *.sh text eol=lf
 gradlew text eol=lf
 
-# Windows Batch bleibt CRLF
-*.bat text eol=crlf
-
-# Binärdateien (keine EOL-Umwandlung)
+# Binärdateien niemals konvertieren
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.gif binary
+*.webp binary
 *.ttf binary
 *.otf binary
+*.jar binary
+*.keystore binary
