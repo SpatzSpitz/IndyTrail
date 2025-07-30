@@ -1,0 +1,17 @@
+# Standard: im Repo LF, Worktree je nach OS
+* text=auto eol=lf
+
+# Scripts & Wrapper
+*.sh text eol=lf
+gradlew text eol=lf
+
+# Windows Batch bleibt CRLF
+*.bat text eol=crlf
+
+# Binärdateien (keine EOL-Umwandlung)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ttf binary
+*.otf binary
