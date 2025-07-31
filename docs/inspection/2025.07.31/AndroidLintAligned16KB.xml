@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/gradle/libs.versions.toml</file>
+  <line>21</line>
+  <module>IndyTrail</module>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/gradle/libs.versions.toml" />
+  <problem_class id="AndroidLintAligned16KB" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Native library dependency not 16 KB aligned</problem_class>
+  <hints />
+  <description>&lt;html&gt;The native library &lt;code&gt;arm64-v8a/libbarhopper_v3.so&lt;/code&gt; (from &lt;code&gt;com.google.mlkit:barcode-scanning:17.2.0&lt;/code&gt;) is not 16 KB aligned&lt;/html&gt;</description>
+  <highlighted_element>module = &quot;com.google.mlkit:barcode-scanning&quot;, version.ref = &quot;barcodeScanning&quot; }</highlighted_element>
+  <language>TOML</language>
+  <offset>20</offset>
+  <length>80</length>
+</problem>
+</problems>

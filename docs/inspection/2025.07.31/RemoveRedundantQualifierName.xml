@@ -1,0 +1,67 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/MainActivity.kt</file>
+  <line>86</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.MainActivity void onCreate(android.os.Bundle savedInstanceState)" />
+  <problem_class id="RemoveRedundantQualifierName" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant qualifier name</problem_class>
+  <description>Redundant qualifier name</description>
+  <highlighted_element>com.example.indytrail.core.</highlighted_element>
+  <language>kotlin</language>
+  <offset>48</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/MainActivity.kt</file>
+  <line>88</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.MainActivity void onCreate(android.os.Bundle savedInstanceState)" />
+  <problem_class id="RemoveRedundantQualifierName" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant qualifier name</problem_class>
+  <description>Redundant qualifier name</description>
+  <highlighted_element>com.example.indytrail.core.</highlighted_element>
+  <language>kotlin</language>
+  <offset>43</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/MainActivity.kt</file>
+  <line>92</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.MainActivity void onCreate(android.os.Bundle savedInstanceState)" />
+  <problem_class id="RemoveRedundantQualifierName" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant qualifier name</problem_class>
+  <description>Redundant qualifier name</description>
+  <highlighted_element>com.example.indytrail.core.</highlighted_element>
+  <language>kotlin</language>
+  <offset>43</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/MainActivity.kt</file>
+  <line>96</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.MainActivity void onCreate(android.os.Bundle savedInstanceState)" />
+  <problem_class id="RemoveRedundantQualifierName" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant qualifier name</problem_class>
+  <description>Redundant qualifier name</description>
+  <highlighted_element>com.example.indytrail.core.</highlighted_element>
+  <language>kotlin</language>
+  <offset>43</offset>
+  <length>27</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/MainActivity.kt</file>
+  <line>105</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.MainActivity void onCreate(android.os.Bundle savedInstanceState)" />
+  <problem_class id="RemoveRedundantQualifierName" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Redundant qualifier name</problem_class>
+  <description>Redundant qualifier name</description>
+  <highlighted_element>android.util.</highlighted_element>
+  <language>kotlin</language>
+  <offset>44</offset>
+  <length>13</length>
+</problem>
+</problems>

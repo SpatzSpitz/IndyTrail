@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/MainActivity.kt</file>
+  <line>35</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.MainActivity void onCreate(android.os.Bundle savedInstanceState)" />
+  <problem_class id="CanBeVal" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Local 'var' is never modified and can be declared as 'val'</problem_class>
+  <description>Variable is never modified, so it can be declared using 'val'</description>
+  <highlighted_element>var</highlighted_element>
+  <language>kotlin</language>
+  <offset>16</offset>
+  <length>3</length>
+</problem>
+</problems>

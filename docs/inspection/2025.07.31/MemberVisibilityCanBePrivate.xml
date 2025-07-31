@@ -1,0 +1,28 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestStore.kt</file>
+  <line>36</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.QuestStore java.util.Map&lt;java.lang.Integer,java.lang.String&gt; glyphs(java.lang.String questId)" />
+  <problem_class id="MemberVisibilityCanBePrivate" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Class member can have 'private' visibility</problem_class>
+  <description>Function 'glyphs' could be private</description>
+  <highlighted_element>glyphs</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>6</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/StationData.kt</file>
+  <line>6</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Stations all" />
+  <problem_class id="MemberVisibilityCanBePrivate" severity="WEAK WARNING" attribute_key="INFO_ATTRIBUTES">Class member can have 'private' visibility</problem_class>
+  <description>Property 'all' could be private</description>
+  <highlighted_element>all</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>3</length>
+</problem>
+</problems>

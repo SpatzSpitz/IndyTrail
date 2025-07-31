@@ -1,0 +1,354 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>4</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Glyph PSI" />
+  <language>kotlin</language>
+  <offset>19</offset>
+  <length>4</length>
+  <highlighted_element>PSI,</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum constant is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>4</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Glyph RHO" />
+  <language>kotlin</language>
+  <offset>24</offset>
+  <length>4</length>
+  <highlighted_element>RHO,</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum constant is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>4</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Glyph SIGMA" />
+  <language>kotlin</language>
+  <offset>29</offset>
+  <length>6</length>
+  <highlighted_element>SIGMA,</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum constant is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>4</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Glyph R" />
+  <language>kotlin</language>
+  <offset>36</offset>
+  <length>2</length>
+  <highlighted_element>R,</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum constant is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>4</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Glyph F" />
+  <language>kotlin</language>
+  <offset>39</offset>
+  <length>2</length>
+  <highlighted_element>F,</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum constant is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>4</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Glyph X" />
+  <language>kotlin</language>
+  <offset>42</offset>
+  <length>2</length>
+  <highlighted_element>X,</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum constant is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>4</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="field" FQNAME="com.example.indytrail.data.Glyph O" />
+  <language>kotlin</language>
+  <offset>45</offset>
+  <length>1</length>
+  <highlighted_element>O</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum constant is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>6</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.QuestModelsKt com.example.indytrail.data.Glyph parseGlyph(java.lang.String name)" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>34</length>
+  <highlighted_element>// Hilfsfunktion: String -&gt; Glyph?</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>11</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.QuestState QuestState(java.lang.String id, java.util.Map&lt;java.lang.Integer,com.example.indytrail.data.Glyph&gt; slots)" />
+  <language>kotlin</language>
+  <offset>21</offset>
+  <length>1</length>
+  <highlighted_element>(</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestStore.kt</file>
+  <line>31</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.QuestStore com.example.indytrail.data.QuestStore.ApplyResult setGlyph(java.lang.String questId, int slot, java.lang.String glyph)" />
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>22</length>
+  <highlighted_element>/** Bequemer Alias. */</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>5</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.ScanRoute.Station Station(java.lang.String stationId)" />
+  <language>kotlin</language>
+  <offset>22</offset>
+  <length>23</length>
+  <highlighted_element>(val stationId: String)</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>5</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.ScanRoute.Station Station(java.lang.String stationId)" />
+  <problem_class id="unused" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused declaration</problem_class>
+  <hints>
+    <hint value="stationId" />
+  </hints>
+  <description>Parameter &lt;code&gt;stationId&lt;/code&gt; is not used</description>
+  <highlighted_element>stationId</highlighted_element>
+  <language>kotlin</language>
+  <offset>27</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>6</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.ScanRoute.QuestGlyph QuestGlyph(java.lang.String questId, int slot, com.example.indytrail.data.Glyph glyph)" />
+  <language>kotlin</language>
+  <offset>25</offset>
+  <length>54</length>
+  <highlighted_element>(val questId: String, val slot: Int, val glyph: Glyph)</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Constructor is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>6</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.ScanRoute.QuestGlyph QuestGlyph(java.lang.String questId, int slot, com.example.indytrail.data.Glyph glyph)" />
+  <problem_class id="unused" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused declaration</problem_class>
+  <hints>
+    <hint value="questId" />
+  </hints>
+  <description>Parameter &lt;code&gt;questId&lt;/code&gt; is not used</description>
+  <highlighted_element>questId</highlighted_element>
+  <language>kotlin</language>
+  <offset>30</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>6</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.ScanRoute.QuestGlyph QuestGlyph(java.lang.String questId, int slot, com.example.indytrail.data.Glyph glyph)" />
+  <problem_class id="unused" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused declaration</problem_class>
+  <hints>
+    <hint value="slot" />
+  </hints>
+  <description>Parameter &lt;code&gt;slot&lt;/code&gt; is not used</description>
+  <highlighted_element>slot</highlighted_element>
+  <language>kotlin</language>
+  <offset>51</offset>
+  <length>4</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>6</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.ScanRoute.QuestGlyph QuestGlyph(java.lang.String questId, int slot, com.example.indytrail.data.Glyph glyph)" />
+  <problem_class id="unused" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused declaration</problem_class>
+  <hints>
+    <hint value="glyph" />
+  </hints>
+  <description>Parameter &lt;code&gt;glyph&lt;/code&gt; is not used</description>
+  <highlighted_element>glyph</highlighted_element>
+  <language>kotlin</language>
+  <offset>66</offset>
+  <length>5</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/AchievementOverlay.kt</file>
+  <line>219</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.AchievementOverlayKt void LogoBadge(float badgeSize, float rotation, java.lang.Integer logoRes, boolean tintLogo, long ringColor, long accentColor)" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>11</length>
+  <highlighted_element>@Composable</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/ScanScreen.kt</file>
+  <line>44</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.ScanScreenKt void ScanScreen(int calibrationPercent, kotlin.jvm.functions.Function1&lt;? super java.lang.String,kotlin.Unit&gt; onResult, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onBack)" />
+  <problem_class id="unused" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused declaration</problem_class>
+  <hints>
+    <hint value="calibrationPercent" />
+  </hints>
+  <description>Parameter &lt;code&gt;calibrationPercent&lt;/code&gt; is not used</description>
+  <highlighted_element>calibrationPercent</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>18</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/immersive.kt</file>
+  <line>10</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.ImmersiveKt void ImmersiveSystemBars()" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>11</length>
+  <highlighted_element>@Composable</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Method is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>3</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="class" FQNAME="com.example.indytrail.data.Glyph" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>63</length>
+  <highlighted_element>// Ein paar Beispiel-Glyphen – erweitern wir später nach Bedarf</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Enum is never used.</description>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>3</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="class" FQNAME="com.example.indytrail.data.ScanRoute" />
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>31</length>
+  <highlighted_element>// Was aus einem QR kommen kann</highlighted_element>
+  <problem_class id="unused" severity="WARNING" attribute_key="NOT_USED_ELEMENT_ATTRIBUTES">unused declaration</problem_class>
+  <hints>
+    <hint value="comment" />
+    <hint value="delete" />
+  </hints>
+  <description>Abstract&amp;nbsp;class is not implemented.</description>
+</problem>
+</problems>

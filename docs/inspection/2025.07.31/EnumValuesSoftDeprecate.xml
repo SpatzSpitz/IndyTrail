@@ -1,0 +1,15 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>8</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.QuestModelsKt com.example.indytrail.data.Glyph parseGlyph(java.lang.String name)" />
+  <problem_class id="EnumValuesSoftDeprecate" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">'Enum.values()' is recommended to be replaced by 'Enum.entries' since 1.9</problem_class>
+  <description>'Enum.values()' is recommended to be replaced by 'Enum.entries' since 1.9</description>
+  <highlighted_element>values()</highlighted_element>
+  <language>kotlin</language>
+  <offset>27</offset>
+  <length>8</length>
+</problem>
+</problems>

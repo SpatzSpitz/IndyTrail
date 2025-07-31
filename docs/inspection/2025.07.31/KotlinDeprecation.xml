@@ -1,0 +1,93 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/MenuScreen.kt</file>
+  <line>279</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.MenuScreenKt void MenuCard(java.lang.String title, java.lang.String subtitle, boolean unlocked, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onClick)" />
+  <problem_class id="KotlinDeprecation" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Usage of redundant or deprecated syntax or deprecated symbols</problem_class>
+  <description>'Divider(Modifier = ..., Dp = ..., Color = ...): Unit' is deprecated. Renamed to HorizontalDivider</description>
+  <highlighted_element>Divider</highlighted_element>
+  <language>kotlin</language>
+  <offset>16</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/MenuScreen.kt</file>
+  <line>288</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.MenuScreenKt void MenuCard(java.lang.String title, java.lang.String subtitle, boolean unlocked, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onClick)" />
+  <problem_class id="KotlinDeprecation" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Usage of redundant or deprecated syntax or deprecated symbols</problem_class>
+  <description>'Divider(Modifier = ..., Dp = ..., Color = ...): Unit' is deprecated. Renamed to HorizontalDivider</description>
+  <highlighted_element>Divider</highlighted_element>
+  <language>kotlin</language>
+  <offset>16</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/QuestScreen.kt</file>
+  <line>104</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.QuestScreenKt void QuestScreen(java.lang.String questId, com.example.indytrail.data.QuestStore store, int refreshTick, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onScanRequest, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onBack, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onOpenEmitter)" />
+  <problem_class id="KotlinDeprecation" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Usage of redundant or deprecated syntax or deprecated symbols</problem_class>
+  <description>'Divider(Modifier = ..., Dp = ..., Color = ...): Unit' is deprecated. Renamed to HorizontalDivider</description>
+  <highlighted_element>Divider</highlighted_element>
+  <language>kotlin</language>
+  <offset>16</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/QuestScreen.kt</file>
+  <line>113</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.QuestScreenKt void QuestScreen(java.lang.String questId, com.example.indytrail.data.QuestStore store, int refreshTick, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onScanRequest, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onBack, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onOpenEmitter)" />
+  <problem_class id="KotlinDeprecation" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Usage of redundant or deprecated syntax or deprecated symbols</problem_class>
+  <description>'Divider(Modifier = ..., Dp = ..., Color = ...): Unit' is deprecated. Renamed to HorizontalDivider</description>
+  <highlighted_element>Divider</highlighted_element>
+  <language>kotlin</language>
+  <offset>16</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/ScanScreen.kt</file>
+  <line>30</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/ScanScreen.kt" />
+  <problem_class id="KotlinDeprecation" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Usage of redundant or deprecated syntax or deprecated symbols</problem_class>
+  <description>Remove deprecated symbol import</description>
+  <highlighted_element>import androidx.compose.ui.platform.LocalLifecycleOwner</highlighted_element>
+  <language>kotlin</language>
+  <offset>0</offset>
+  <length>55</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/ScanScreen.kt</file>
+  <line>49</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.ScanScreenKt void ScanScreen(int calibrationPercent, kotlin.jvm.functions.Function1&lt;? super java.lang.String,kotlin.Unit&gt; onResult, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onBack)" />
+  <problem_class id="KotlinDeprecation" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Usage of redundant or deprecated syntax or deprecated symbols</problem_class>
+  <description>'LocalLifecycleOwner: ProvidableCompositionLocal&lt;LifecycleOwner&gt;' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.</description>
+  <highlighted_element>LocalLifecycleOwner</highlighted_element>
+  <language>kotlin</language>
+  <offset>25</offset>
+  <length>19</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/ScanScreen.kt</file>
+  <line>49</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.ScanScreenKt void ScanScreen(int calibrationPercent, kotlin.jvm.functions.Function1&lt;? super java.lang.String,kotlin.Unit&gt; onResult, kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt; onBack)" />
+  <problem_class id="KotlinDeprecation" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Usage of redundant or deprecated syntax or deprecated symbols</problem_class>
+  <description>'LocalLifecycleOwner: ProvidableCompositionLocal&lt;LifecycleOwner&gt;' is deprecated. Moved to lifecycle-runtime-compose library in androidx.lifecycle.compose package.</description>
+  <highlighted_element>LocalLifecycleOwner</highlighted_element>
+  <language>kotlin</language>
+  <offset>25</offset>
+  <length>19</length>
+</problem>
+</problems>

@@ -1,0 +1,106 @@
+<problems>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/MainActivity.kt</file>
+  <line>58</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.MainActivity void onCreate(android.os.Bundle savedInstanceState)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;applyScan&quot; is never used</description>
+  <highlighted_element>applyScan</highlighted_element>
+  <language>kotlin</language>
+  <offset>20</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>7</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.QuestModelsKt com.example.indytrail.data.Glyph parseGlyph(java.lang.String name)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;parseGlyph&quot; is never used</description>
+  <highlighted_element>parseGlyph</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestModels.kt</file>
+  <line>11</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="class" FQNAME="com.example.indytrail.data.QuestState" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;QuestState&quot; is never used</description>
+  <highlighted_element>QuestState</highlighted_element>
+  <language>kotlin</language>
+  <offset>11</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/QuestStore.kt</file>
+  <line>32</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.data.QuestStore com.example.indytrail.data.QuestStore.ApplyResult setGlyph(java.lang.String questId, int slot, java.lang.String glyph)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;setGlyph&quot; is never used</description>
+  <highlighted_element>setGlyph</highlighted_element>
+  <language>kotlin</language>
+  <offset>8</offset>
+  <length>8</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>5</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="class" FQNAME="com.example.indytrail.data.ScanRoute.Station" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;Station&quot; is never used</description>
+  <highlighted_element>Station</highlighted_element>
+  <language>kotlin</language>
+  <offset>15</offset>
+  <length>7</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/data/Routes.kt</file>
+  <line>6</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.data</package>
+  <entry_point TYPE="class" FQNAME="com.example.indytrail.data.ScanRoute.QuestGlyph" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Class &quot;QuestGlyph&quot; is never used</description>
+  <highlighted_element>QuestGlyph</highlighted_element>
+  <language>kotlin</language>
+  <offset>15</offset>
+  <length>10</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/AchievementOverlay.kt</file>
+  <line>220</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.AchievementOverlayKt void LogoBadge(float badgeSize, float rotation, java.lang.Integer logoRes, boolean tintLogo, long ringColor, long accentColor)" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;LogoBadge&quot; is never used</description>
+  <highlighted_element>LogoBadge</highlighted_element>
+  <language>kotlin</language>
+  <offset>12</offset>
+  <length>9</length>
+</problem>
+<problem>
+  <file>file://$PROJECT_DIR$/app/src/main/java/com/example/indytrail/ui/immersive.kt</file>
+  <line>11</line>
+  <module>IndyTrail.app.main</module>
+  <package>com.example.indytrail.ui</package>
+  <entry_point TYPE="method" FQNAME="com.example.indytrail.ui.ImmersiveKt void ImmersiveSystemBars()" />
+  <problem_class id="UnusedSymbol" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unused symbol</problem_class>
+  <description>Function &quot;ImmersiveSystemBars&quot; is never used</description>
+  <highlighted_element>ImmersiveSystemBars</highlighted_element>
+  <language>kotlin</language>
+  <offset>4</offset>
+  <length>19</length>
+</problem>
+</problems>

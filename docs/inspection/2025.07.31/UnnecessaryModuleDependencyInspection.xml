@@ -1,0 +1,26 @@
+<problems>
+<problem>
+  <file>IndyTrail.app.androidTest</file>
+  <module>IndyTrail.app.androidTest</module>
+  <entry_point TYPE="module" FQNAME="IndyTrail.app.androidTest" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="IndyTrail.app.main" />
+  </hints>
+  <description>Module 'IndyTrail.app.androidTest' sources do not depend on module 'IndyTrail.app.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+<problem>
+  <file>IndyTrail.app.unitTest</file>
+  <module>IndyTrail.app.unitTest</module>
+  <entry_point TYPE="module" FQNAME="IndyTrail.app.unitTest" />
+  <problem_class id="UnnecessaryModuleDependencyInspection" severity="WARNING" attribute_key="WARNING_ATTRIBUTES">Unnecessary module dependency</problem_class>
+  <hints>
+    <hint value="IndyTrail.app.main" />
+  </hints>
+  <description>Module 'IndyTrail.app.unitTest' sources do not depend on module 'IndyTrail.app.main' sources</description>
+  <highlighted_element />
+  <language />
+</problem>
+</problems>
