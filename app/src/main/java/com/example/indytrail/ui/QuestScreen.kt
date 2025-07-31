@@ -9,7 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +40,7 @@ fun QuestScreen(
     val progress = store.snapshot(questId)
     val slots = (1..4).map { i -> progress[i] } // List<String?>
     val foundCount = slots.count { !it.isNullOrBlank() }
+    var showCodexMessage by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -154,6 +155,27 @@ fun QuestScreen(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+
+            Spacer(Modifier.height(12.dp))
+
+            Button(
+                onClick = { showCodexMessage = true },
+                shape = RoundedCornerShape(14.dp)
+            ) {
+                Text(
+                    "Test Codex",
+                    style = MaterialTheme.typography.titleMedium.copy(letterSpacing = 1.2.sp)
+                )
+            }
+
+            if (showCodexMessage) {
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "Codex is Working",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
         }
     }
 }
