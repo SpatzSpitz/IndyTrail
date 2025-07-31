@@ -52,12 +52,7 @@ fun LumenEmitterScreen(
     fun press(key: String): Boolean {
         return if (expected.getOrNull(idx) == key) {
             idx++
-            if (idx == expected.size) {
-                idx = 0
-                true
-            } else {
-                false
-            }
+            idx == expected.size
         } else {
             idx = 0
             false
@@ -79,13 +74,29 @@ fun LumenEmitterScreen(
     var camera by remember { mutableStateOf<Camera?>(null) }
     val scope = rememberCoroutineScope()
 
-    suspend fun flash(times: Int) {
+    // Morse-style flash patterns per key
+    val flashPatterns = remember {
+        mapOf(
+            "1" to ".-..",
+            "2" to "..-.",
+            "3" to "-...",
+            "4" to "--..",
+            "5" to ".-.-",
+            "6" to "-..-",
+            "7" to "...-",
+            "8" to ".--.",
+            "9" to "-.-."
+        )
+    }
+
+    suspend fun flash(pattern: String) {
         val cam = camera ?: return
-        repeat(times) {
+        pattern.forEachIndexed { i, c ->
+            val onTime = if (c == '-') 300L else 100L
             cam.cameraControl.enableTorch(true)
-            delay(100)
+            delay(onTime)
             cam.cameraControl.enableTorch(false)
-            if (it != times - 1) delay(80)
+            if (i != pattern.lastIndex) delay(120)
         }
     }
 
@@ -230,9 +241,13 @@ fun LumenEmitterScreen(
                             Button(
                                 onClick = {
                                     val ok = press(label)
+                                    val pattern = flashPatterns[label] ?: ".-.."
                                     scope.launch {
-                                        flash(label.toInt())
-                                        if (ok) onSuccess()
+                                        flash(pattern)
+                                        if (ok) {
+                                            delay(150)
+                                            onSuccess()
+                                        }
                                     }
                                 },
                                 modifier = Modifier
