@@ -175,7 +175,7 @@ fun CalibrationBar(percent: Int, modifier: Modifier = Modifier) {
 @Composable
 fun MenuScreen(
     calibrationPercent: Int,
-    questGlyphsFound: Int = 0,      // ← Defaultwert
+    questGlyphsFound: Int = 0,
     lumenUnlocked: Boolean,
     pathfinderUnlocked: Boolean,
     codexUnlocked: Boolean,

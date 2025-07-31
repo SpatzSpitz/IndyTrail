@@ -18,15 +18,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.indytrail.data.QuestStore
-import com.example.indytrail.data.GlyphCatalog     // <- Mapping "PSI" -> sichtbares Zeichen
-import com.example.indytrail.ui.theme.IndyGlyphs  // <- deine eingebettete Glyph-Schrift (optional)
+import com.example.indytrail.data.GlyphCatalog     // mapping "PSI" -> visible symbol
+import com.example.indytrail.ui.theme.IndyGlyphs  // optional custom glyph font
 
 @Composable
 fun QuestScreen(
     questId: String,
     store: QuestStore,
-    refreshTick: Int,          // erzwingt Recompose nach Scan
-    onScanRequest: () -> Unit, // öffnet Scanner
+    refreshTick: Int,          // force recomposition after scan
+    onScanRequest: () -> Unit, // open scanner
     onBack: () -> Unit,
     onOpenEmitter: () -> Unit
 ) {
@@ -34,7 +34,7 @@ fun QuestScreen(
     val shape = RoundedCornerShape(18.dp)
     val border = BorderStroke(1.dp, cyan.copy(alpha = 0.35f))
 
-    // Aktuellen Stand für diese Quest holen
+    // obtain current progress for this quest
     @Suppress("UNUSED_EXPRESSION")
     refreshTick
     val progress = store.snapshot(questId)
@@ -134,7 +134,7 @@ fun QuestScreen(
 
             Spacer(Modifier.height(12.dp))
 
-// --- TEMP: immer sichtbarer Debug-Button, um Emitter zu öffnen ---
+// Temporary debug button to open the emitter
             OutlinedButton(
                 onClick = onOpenEmitter,
                 shape = RoundedCornerShape(14.dp)

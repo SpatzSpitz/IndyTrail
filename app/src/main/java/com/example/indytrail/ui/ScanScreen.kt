@@ -103,7 +103,7 @@ fun ScanScreen(
                 )
             )
         }
-    ) { innerPadding ->                       // <— WICHTIG: Padding vom Scaffold übernehmen
+    ) { innerPadding ->                       // important: use Scaffold padding
         if (!hasPermission) {
             Box(Modifier.fillMaxSize().padding(innerPadding), contentAlignment = Alignment.Center) {
                 Text("Kamerazugriff benötigt.")
@@ -201,7 +201,7 @@ private fun ScannerOverlay() {
             val w = size.width
             val h = size.height
 
-            // ===== (1) MITTLERER SCAN-FRAME – UNVERÄNDERT
+            // ===== (1) middle scan frame
             val frameSize = minOf(w, h) * 0.70f
             val left = (w - frameSize) / 2f
             val top  = (h - frameSize) / 2f
@@ -224,7 +224,7 @@ private fun ScannerOverlay() {
                 strokeWidth = 2.5.dp.toPx()
             )
 
-            // ===== (2) Außenbereich abdunkeln (gleiches Theme-Feeling)
+            // ===== (2) darken outer area for style
             val scrim = bg.copy(alpha = 0.78f)
             drawRect(scrim, size = Size(w, top)) // oben
             drawRect(scrim, topLeft = Offset(0f, top), size = Size(left, frameSize)) // links
@@ -234,7 +234,7 @@ private fun ScannerOverlay() {
                 size = Size(w, h - (top + frameSize))) // unten
 
             // ===== (3) KURZE HIEROGLYPHEN-CLUSTER DIREKT AM RAND (ohne Linien)
-            val inset = 6.dp.toPx()         // minimaler Innenabstand zum Rand
+            val inset = 6.dp.toPx()         // minimal padding from edge
             val txtSize = 16.sp.toPx()
             val clusterTop    = "ᚠᛇᚻ᛫ᚠᛇ"
             val clusterBottom = "ᛟᚦᛁᚾᚷ"
@@ -248,21 +248,21 @@ private fun ScannerOverlay() {
                 color = cyan.copy(alpha = 0.95f).toArgb()
             }
 
-            // — oben (zentriert, Baseline knapp unter dem Rand)
+            // — top (centered, baseline just below the edge)
             run {
                 val tw = p.measureText(clusterTop)
                 val x = (w - tw) / 2f
                 val y = inset + txtSize
                 nc.drawText(clusterTop, x, y, p)
             }
-            // — unten (zentriert, Baseline knapp über dem Rand)
+            // — bottom (centered, baseline just above the edge)
             run {
                 val tw = p.measureText(clusterBottom)
                 val x = (w - tw) / 2f
                 val y = h - inset
                 nc.drawText(clusterBottom, x, y, p)
             }
-            // — links (kurzer vertikaler Stapel, zentriert)
+            // — left (short vertical stack, centered)
             run {
                 val chars = clusterSide.toCharArray()
                 val vStep = txtSize * 1.15f
@@ -274,7 +274,7 @@ private fun ScannerOverlay() {
                     y0 += vStep
                 }
             }
-            // — rechts (kurzer vertikaler Stapel, zentriert, rechtsbündig)
+            // — right (short vertical stack, centered, aligned right)
             run {
                 val chars = clusterSide.toCharArray()
                 val vStep = txtSize * 1.15f
@@ -288,7 +288,7 @@ private fun ScannerOverlay() {
                 }
             }
         }
-        // kein Hinweis-Text mehr
+        // no hint text anymore
     }
 }
 

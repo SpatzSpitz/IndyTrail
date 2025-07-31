@@ -41,10 +41,10 @@ fun LumenEmitterScreen(
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    // --- Fortschrittsindex in expected ---
+    // progress index in the expected sequence
     var idx by remember { mutableStateOf(0) }
 
-    // Bei neuer erwarteter Sequenz Fortschritt zurücksetzen
+    // reset progress when the expected sequence changes
     LaunchedEffect(expected) { idx = 0 }
 
     fun press(key: String) {
@@ -59,7 +59,7 @@ fun LumenEmitterScreen(
         }
     }
 
-    // --- Kamera‑Permission (für Torch) ---
+    // camera permission (used for the torch)
     var hasCamera by remember { mutableStateOf(false) }
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
@@ -91,9 +91,7 @@ fun LumenEmitterScreen(
         }, ContextCompat.getMainExecutor(context))
     }
 
-    // --- Aus expected die sichtbaren Runen ableiten ---
-    // expected enthält Tasten ("1".."9") -> erst Code (PSI/R/...) -> dann Symbol.
-// --- Aus expected die sichtbaren Runen ableiten ---
+    // derive visible runes from expected keys
     val expectedSymbols: List<String> = remember(expected) {
         expected.mapNotNull { key ->
             val code = com.example.indytrail.data.GlyphCatalog.codeFromKey(key)
@@ -129,13 +127,13 @@ fun LumenEmitterScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Unsichtbare Preview (öffnet die Kamera, damit Torch verfügbar ist)
+            // invisible preview to activate the camera so the torch works
             AndroidView(
                 factory = { previewView },
                 modifier = Modifier.size(1.dp)
             )
 
-            // --- Fortschritts‑LEDs ---
+            // progress LEDs
             Row(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.CenterVertically
@@ -153,7 +151,7 @@ fun LumenEmitterScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            // --- Optional: Torch‑Buttons ---
+            // optional torch buttons
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Button(
                     enabled = camera != null,
@@ -168,7 +166,7 @@ fun LumenEmitterScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            // --- Runen‑Zeile aus expected (sichtbare Hinweise) ---
+            // row of runes from expected sequence (visual hints)
             if (expectedSymbols.isNotEmpty()) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -201,7 +199,7 @@ fun LumenEmitterScreen(
                 }
             }
 
-            // --- (Optional) zusätzlich die vom Quest gelieferten Codes als Chips ---
+            // (optional) additional chips with codes provided by the quest
             if (hintGlyphs.isNotEmpty()) {
                 Spacer(Modifier.height(8.dp))
                 Row(
@@ -216,7 +214,7 @@ fun LumenEmitterScreen(
 
             Spacer(Modifier.height(16.dp))
 
-            // --- 3x3‑Tastenfeld (1..9) ---
+            // 3x3 keypad (1..9)
             val keys = (1..9).map(Int::toString)
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 for (r in 0 until 3) {
@@ -248,7 +246,7 @@ fun LumenEmitterScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            // Debug‑Anzeige
+            // debug display
             Text(
                 "Expected: " + expected.joinToString("-"),
                 style = MaterialTheme.typography.bodySmall,
