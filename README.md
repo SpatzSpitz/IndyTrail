@@ -74,7 +74,7 @@ trail://quest/Q1/slot/4/glyph/X
 - **MenuScreen**: Geräte‑Konsole, zeigt Kalibrierung & freigeschaltete Tools.
 - **ScanScreen**: QR‑Erkennung (CameraX + ML Kit) und Routing über `trail://…`.
 - **QuestScreen (Q1)**: 4 Slots, „Scan Glyphs“, Debug‑Button „Open Lumen Emitter“.
-- **LumenEmitterScreen**: 3×3‑Tasten (1–9), LEDs für Fortschritt, Torch AN/AUS, Runen‑Hinweise aus der erwarteten Sequenz.
+ - **LumenEmitterScreen**: 3×3‑Tasten mit Glyphen, LEDs für Fortschritt und kamerabasierte Blitz‑Sequenzen.
 
 ---
 
@@ -119,5 +119,9 @@ private val keyToCode = mapOf(
   "2" to "R",
   "3" to "F",
   "4" to "X",
-  // 5..9 frei belegbar
+  "5" to "U",
+  "6" to "T",
+  "7" to "S",
+  "8" to "E",
+  "9" to "B",
 )
