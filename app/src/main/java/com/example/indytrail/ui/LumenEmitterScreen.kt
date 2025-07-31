@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun LumenEmitterScreen(
@@ -72,6 +74,17 @@ fun LumenEmitterScreen(
     // --- Unsichtbare PreviewView, nur um CameraX zu binden (Torch-Steuerung) ---
     val previewView = remember { PreviewView(context).apply { alpha = 0f } }
     var camera by remember { mutableStateOf<Camera?>(null) }
+    val scope = rememberCoroutineScope()
+
+    suspend fun flash(times: Int) {
+        val cam = camera ?: return
+        repeat(times) {
+            cam.cameraControl.enableTorch(true)
+            delay(100)
+            cam.cameraControl.enableTorch(false)
+            if (it != times - 1) delay(80)
+        }
+    }
 
     LaunchedEffect(hasCamera) {
         if (!hasCamera) return@LaunchedEffect
@@ -151,20 +164,7 @@ fun LumenEmitterScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            // optional torch buttons
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Button(
-                    enabled = camera != null,
-                    onClick = { camera?.cameraControl?.enableTorch(true) }
-                ) { Text("Torch ON") }
-
-                OutlinedButton(
-                    enabled = camera != null,
-                    onClick = { camera?.cameraControl?.enableTorch(false) }
-                ) { Text("Torch OFF") }
-            }
-
-            Spacer(Modifier.height(12.dp))
+            // (torch control handled automatically per key)
 
             // row of runes from expected sequence (visual hints)
             if (expectedSymbols.isNotEmpty()) {
@@ -214,8 +214,8 @@ fun LumenEmitterScreen(
 
             Spacer(Modifier.height(16.dp))
 
-            // 3x3 keypad (1..9)
-            val keys = (1..9).map(Int::toString)
+            // 3x3 keypad with shuffled layout
+            val keys = remember { (1..9).map(Int::toString).shuffled() }
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 for (r in 0 until 3) {
                     Row(
@@ -225,14 +225,20 @@ fun LumenEmitterScreen(
                         for (c in 1..3) {
                             val label = keys[r * 3 + (c - 1)]
                             Button(
-                                onClick = { press(label) },
+                                onClick = {
+                                    scope.launch { flash(label.toInt()) }
+                                    press(label)
+                                },
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(56.dp),
                                 shape = RoundedCornerShape(12.dp)
                             ) {
                                 Text(
-                                    label,
+                                    run {
+                                        val code = com.example.indytrail.data.GlyphCatalog.codeFromKey(label)
+                                        code?.let { com.example.indytrail.data.GlyphCatalog.symbol(it) } ?: label
+                                    },
                                     style = MaterialTheme.typography.titleMedium.copy(
                                         fontWeight = FontWeight.SemiBold,
                                         letterSpacing = 1.2.sp
