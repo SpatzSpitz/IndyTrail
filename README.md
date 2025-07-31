@@ -119,5 +119,9 @@ private val keyToCode = mapOf(
   "2" to "R",
   "3" to "F",
   "4" to "X",
-  // 5..9 frei belegbar
+  "5" to "U",
+  "6" to "T",
+  "7" to "S",
+  "8" to "E",
+  "9" to "B",
 )

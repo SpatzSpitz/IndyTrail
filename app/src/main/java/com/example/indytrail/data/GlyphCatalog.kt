@@ -15,6 +15,11 @@ object GlyphCatalog {
         "R"   to "ᚱ",   // Rune R (Raido)
         "F"   to "ᚠ",   // Rune F (Fehu)
         "X"   to "ᛉ",   // Rune Algiz (resembles X)
+        "U"   to "ᚢ",   // Rune Uruz
+        "T"   to "ᛏ",   // Rune Tiwaz
+        "S"   to "ᛋ",   // Rune Sowilo
+        "E"   to "ᛖ",   // Rune Ehwaz
+        "B"   to "ᛒ"    // Rune Berkana
     )
 
     // Key (emitter) -> code
@@ -23,8 +28,11 @@ object GlyphCatalog {
         "2" to "R",
         "3" to "F",
         "4" to "X",
-        // Additional mappings possible:
-        // "5" to "...", "6" to "...", ...
+        "5" to "U",
+        "6" to "T",
+        "7" to "S",
+        "8" to "E",
+        "9" to "B",
     )
 
     /** Visible symbol for a code. Fallback: "?" */

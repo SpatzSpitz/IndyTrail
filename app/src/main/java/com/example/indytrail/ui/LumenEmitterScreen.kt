@@ -49,15 +49,18 @@ fun LumenEmitterScreen(
     // reset progress when the expected sequence changes
     LaunchedEffect(expected) { idx = 0 }
 
-    fun press(key: String) {
-        if (expected.getOrNull(idx) == key) {
+    fun press(key: String): Boolean {
+        return if (expected.getOrNull(idx) == key) {
             idx++
             if (idx == expected.size) {
                 idx = 0
-                onSuccess()
+                true
+            } else {
+                false
             }
         } else {
             idx = 0
+            false
         }
     }
 
@@ -226,8 +229,11 @@ fun LumenEmitterScreen(
                             val label = keys[r * 3 + (c - 1)]
                             Button(
                                 onClick = {
-                                    scope.launch { flash(label.toInt()) }
-                                    press(label)
+                                    val ok = press(label)
+                                    scope.launch {
+                                        flash(label.toInt())
+                                        if (ok) onSuccess()
+                                    }
                                 },
                                 modifier = Modifier
                                     .weight(1f)
