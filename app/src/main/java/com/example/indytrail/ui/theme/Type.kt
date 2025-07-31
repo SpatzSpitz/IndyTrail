@@ -36,5 +36,5 @@ val Typography = Typography(
 )
 
 val IndyGlyphs = FontFamily(
-    Font(R.font.noto_sans_runic)  // <— dein Font in res/font
+    Font(R.font.noto_sans_runic)  // custom runic font in res/font
 )

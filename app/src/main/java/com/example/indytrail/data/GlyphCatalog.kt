@@ -1,39 +1,39 @@
 package com.example.indytrail.data
 
 /**
- * Einfaches Mapping:
- *  - Code (aus QR: "PSI", "R", "F", "X") -> sichtbares Symbol
- *  - Taste (Emitter: "1".."9") -> Code
+ * Simple mappings:
+ *  - Code (from QR like "PSI", "R", "F", "X") -> visible symbol
+ *  - Key (emitter: "1".."9") -> code
  *
- * Du kannst die Zuordnungen jederzeit anpassen/erweitern.
+ * Adjust the mappings as needed.
  */
 object GlyphCatalog {
 
-    // Code -> sichtbares Symbol (Runen/Griechisch o.ä.)
+    // Code -> visible symbol (runes/Greek etc.)
     private val codeToSymbol: Map<String, String> = mapOf(
-        "PSI" to "Ψ",   // Beispiel: griechisches Psi
-        "R"   to "ᚱ",   // Runen-R (Raido)
-        "F"   to "ᚠ",   // Runen-F (Fehu)
-        "X"   to "ᛉ",   // Runen-Algiz (X-ähnlich)
+        "PSI" to "Ψ",   // Greek psi
+        "R"   to "ᚱ",   // Rune R (Raido)
+        "F"   to "ᚠ",   // Rune F (Fehu)
+        "X"   to "ᛉ",   // Rune Algiz (resembles X)
     )
 
-    // Taste (Emitter) -> Code
+    // Key (emitter) -> code
     private val keyToCode: Map<String, String> = mapOf(
         "1" to "PSI",
         "2" to "R",
         "3" to "F",
         "4" to "X",
-        // Weitere Zuordnungen sind möglich:
+        // Additional mappings possible:
         // "5" to "...", "6" to "...", ...
     )
 
-    /** Sichtbares Symbol für einen Code. Fallback: "?" */
+    /** Visible symbol for a code. Fallback: "?" */
     fun symbol(code: String?): String = codeToSymbol[code] ?: "?"
 
-    /** Code zu einer Tasten-Eingabe (z.B. "1" -> "PSI"). */
+    /** Code from a key press (e.g. "1" -> "PSI"). */
     fun codeFromKey(key: String?): String? = keyToCode[key]
 
-    /** Rückrichtung: welche Taste gehört zu diesem Code (z.B. "PSI" -> "1")? */
+    /** Reverse lookup: which key belongs to this code (e.g. "PSI" -> "1")? */
     fun keyFromCode(code: String?): String? =
         keyToCode.entries.firstOrNull { it.value == code }?.key
 }

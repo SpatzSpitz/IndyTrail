@@ -1,8 +1,8 @@
 package com.example.indytrail.data
 
 /**
- * Hält pro Quest die gefundenen Glyphen nach Slot (1..4).
- * Minimal, ohne Persistenz – nur In‑Memory.
+ * Tracks found glyphs per quest slot (1..4).
+ * Simple in-memory storage without persistence.
  */
 class QuestStore {
 
@@ -15,7 +15,9 @@ class QuestStore {
         data object NoChange : ApplyResult
     }
 
-    /** Glyph in Slot übernehmen. Slots sind 1‑basiert. */
+    /**
+     * Insert a glyph into the given slot. Slots are 1-based.
+     */
     fun applyGlyph(questId: String, slot: Int, glyph: String): ApplyResult {
         val q = map.getOrPut(questId) { mutableMapOf() }
         val prev = q[slot]
@@ -23,23 +25,23 @@ class QuestStore {
 
         q[slot] = glyph
 
-        // Completed, wenn Slots 1..4 belegt sind
+        // completed when slots 1..4 are filled
         val complete = (1..4).all { q[it]?.isNotEmpty() == true }
         return if (complete) ApplyResult.Completed(q.toMap()) else ApplyResult.Updated(q.toMap())
     }
 
-    /** Bequemer Alias. */
+    /** Convenient alias. */
     fun setGlyph(questId: String, slot: Int, glyph: String): ApplyResult =
         applyGlyph(questId, slot, glyph)
 
-    /** Aktueller Stand der Glyphen für eine Quest. */
-    fun glyphs(questId: String): Map<Int, String> =
+    /** Current glyphs for a quest. */
+    private fun glyphs(questId: String): Map<Int, String> =
         map[questId]?.toMap().orEmpty()
 
-    /** Anzahl belegter Slots (1..4). */
+    /** Number of filled slots (1..4). */
     fun foundCount(questId: String): Int =
         map[questId]?.count { it.key in 1..4 && it.value.isNotEmpty() } ?: 0
 
-    /** Für Debug/Logging. */
+    /** For debugging or logging. */
     fun snapshot(questId: String): Map<Int, String> = glyphs(questId)
 }

@@ -1,13 +1,13 @@
 package com.example.indytrail.data
 
-// Ein paar Beispiel-Glyphen – erweitern wir später nach Bedarf
+// Example glyph set – extend as needed
 enum class Glyph { PSI, RHO, SIGMA, R, F, X, O }
 
-// Hilfsfunktion: String -> Glyph?
+// Helper to parse a glyph from its string name
 fun parseGlyph(name: String?): Glyph? =
-    name?.let { n -> Glyph.values().firstOrNull { it.name.equals(n, ignoreCase = true) } }
+    name?.let { n -> Glyph.entries.firstOrNull { it.name.equals(n, ignoreCase = true) } }
 
-// Optionales Quest-Container-Modell (nutzen wir im nächsten Schritt)
+// Optional quest container model
 data class QuestState(
     val id: String = "Q1",
     val slots: MutableMap<Int, Glyph?> = mutableMapOf(1 to null, 2 to null, 3 to null, 4 to null)

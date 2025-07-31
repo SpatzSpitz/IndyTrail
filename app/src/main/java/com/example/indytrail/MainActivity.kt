@@ -12,6 +12,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import com.example.indytrail.core.ScanRoute
 import com.example.indytrail.core.parseScanUri
+import com.example.indytrail.data.GlyphCatalog
+import com.example.indytrail.data.QuestStore
+import com.example.indytrail.data.Stations
+import com.example.indytrail.ui.*
 import com.example.indytrail.ui.theme.IndyTrailTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,15 +32,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             IndyTrailTheme {
 
-                // -------- Quest‑Store --------
-                val questStore = remember { com.example.indytrail.data.QuestStore() }
+                // ----- Quest store -----
+                val questStore = remember { QuestStore() }
                 var showEmitter by remember { mutableStateOf(false) }
-                var emitterExpected by remember { mutableStateOf(listOf("1","2","3","4")) } // Test-Sequenz
-                var emitterHintGlyphs by remember { mutableStateOf(listOf<String?>()) }
+                var emitterExpected by remember { mutableStateOf(listOf("1","2","3","4")) } // test sequence
+                val emitterHintGlyphs by remember { mutableStateOf(listOf<String?>()) }
                 var showQuest by remember { mutableStateOf(false) }
-                var currentQuestId by remember { mutableStateOf("Q1") }   // wird aus QR gesetzt
+                var currentQuestId by remember { mutableStateOf("Q1") }   // set via QR
                 var questTick by remember { mutableStateOf(0) }
-                // -------- Overlay‑State (nur Grafik, kein Sound) --------
+                // ----- Overlay state (visual only) -----
                 var overlayVisible by remember { mutableStateOf(false) }
                 var overlayTitle by remember { mutableStateOf("") }
                 var overlaySubtitle by remember { mutableStateOf("") }
@@ -46,28 +50,15 @@ class MainActivity : ComponentActivity() {
                     overlayVisible = true
                 }
 
-                // Anzahl gefundener Glyphen (Q1)
-                // wenn du eine Variable willst:
+                // number of glyphs found for quest Q1
                 val q1Found = questStore.foundCount("Q1")
 
 
-                // -------- Kalibrierung & Unlocks --------
+                // -------- Calibration & feature unlocks --------
                 var calibration by rememberSaveable { mutableStateOf(0) }       // 0..100
-                var scannedIds by remember { mutableStateOf(setOf<String>()) }  // dedup
+                var scannedIds by remember { mutableStateOf(setOf<String>()) }  // deduplicate station scans
 
-                fun applyScan(value: String) {
-                    val id = stationIdFrom(value) ?: return
-                    if (!scannedIds.contains(id)) {
-                        val prev = calibration
-                        scannedIds = scannedIds + id
-                        calibration = (calibration + 10).coerceAtMost(100)
-                        if (prev < 20 && calibration >= 20) {
-                            showOverlay("Calibration 20%", "LUMEN EMITTER unlocked (prototype)")
-                        }
-                    }
-                }
-
-                val lumenUnlocked      = true//calibration >= 20
+                val lumenUnlocked      = true // calibration >= 20
                 val pathfinderUnlocked = calibration >= 60
                 val codexUnlocked      = calibration >= 85
 
@@ -75,31 +66,30 @@ class MainActivity : ComponentActivity() {
                 var showScanner by remember { mutableStateOf(false) }
                 var currentStationId by remember { mutableStateOf<String?>(null) }
 
-                // Box für z‑Reihenfolge (Overlay oben)
+                // Root container to keep the overlay above other content
                 Box(Modifier.fillMaxSize()) {
 
                     when {
                         showScanner -> {
-                            com.example.indytrail.ui.ScanScreen(
+                            ScanScreen(
                                 calibrationPercent = calibration,
                                 onResult = { value ->
-                                    val route = com.example.indytrail.core.parseScanUri(value)
+                                    val route = parseScanUri(value)
                                     when (route) {
-                                        is com.example.indytrail.core.ScanRoute.Station -> {
+                                        is ScanRoute.Station -> {
                                             currentStationId = route.stationId
-                                            // applyScan(value) // falls du weiterhin kalibrieren willst
                                         }
-                                        is com.example.indytrail.core.ScanRoute.QuestOpen -> {
+                                        is ScanRoute.QuestOpen -> {
                                             currentQuestId = route.questId
                                             showQuest = true
                                         }
-                                        is com.example.indytrail.core.ScanRoute.QuestGlyph -> {
+                                        is ScanRoute.QuestGlyph -> {
                                             val res = questStore.applyGlyph(route.questId, route.slot, route.glyph)
                                             currentQuestId = route.questId
-                                            if (res !is com.example.indytrail.data.QuestStore.ApplyResult.NoChange) {
-                                                questTick++          // QuestScreen neu zeichnen
+                                            if (res !is QuestStore.ApplyResult.NoChange) {
+                                                questTick++          // force recomposition
                                             }
-                                            showQuest = true        // nach Scan zurück in den Quest
+                                            showQuest = true        // return to quest after scanning
                                         }
                                         null -> {
                                             android.util.Log.d("SCAN", "Unbekanntes Format: $value")
@@ -112,9 +102,9 @@ class MainActivity : ComponentActivity() {
                         }
 
                         currentStationId != null -> {
-                            val st = com.example.indytrail.data.Stations.byId(currentStationId!!)
+                            val st = Stations.byId(currentStationId!!)
                             if (st != null) {
-                                com.example.indytrail.ui.StationScreen(
+                                StationScreen(
                                     station = st,
                                     onBack = { currentStationId = null }
                                 )
@@ -124,27 +114,26 @@ class MainActivity : ComponentActivity() {
                         }
 
                         showQuest -> {
-                            com.example.indytrail.ui.QuestScreen(
+                            QuestScreen(
                                 questId = currentQuestId,
                                 store = questStore,
                                 refreshTick = questTick,
                                 onScanRequest = { showScanner = true },
                                 onOpenEmitter = {
-                                    // 1) aktuellen Quest-Fortschritt holen
+                                    // read current quest progress
                                     val progress = questStore.snapshot(currentQuestId)
 
-                                    // 2) Aus den Codes (z.B. "PSI","R","F","X") die Emitter-Tasten ("1".."9") ableiten
-                                    //    => wichtig: Zieltyp angeben, sonst "Cannot infer type..."
+                                    // map codes (e.g. PSI/R/F/X) to emitter keys ("1".."9")
                                     val expected: List<String> = (1..4).mapNotNull { slot ->
-                                        com.example.indytrail.data.GlyphCatalog.keyFromCode(progress[slot])
+                                        GlyphCatalog.keyFromCode(progress[slot])
                                     }
 
                                     if (expected.size == 4) {
-                                        emitterExpected = expected      // z.B. ["1","2","3","4"]
-                                        showQuest = false               // zuerst Quest schließen
-                                        showEmitter = true              // dann Emitter zeigen
+                                        emitterExpected = expected      // e.g. ["1","2","3","4"]
+                                        showQuest = false               // close quest first
+                                        showEmitter = true              // then show emitter
                                     } else {
-                                        // Optional: Hinweis anzeigen (noch nicht alle Glyphen)
+                                        // optional hint if not all glyphs are scanned
                                         // showOverlay("Need 4 glyphs", "Scan all glyphs before using the emitter")
                                     }
                                 }
@@ -155,42 +144,40 @@ class MainActivity : ComponentActivity() {
                         }
 
                         showEmitter -> {
-                            com.example.indytrail.ui.LumenEmitterScreen(
-                                expected = emitterExpected,
-                                hintGlyphs = emitterHintGlyphs,     // NEU
+                                LumenEmitterScreen(
+                                    expected = emitterExpected,
+                                    hintGlyphs = emitterHintGlyphs,
                                 onBack = { showEmitter = false },
                                 onSuccess = {
                                     showEmitter = false
-                                    // Optional: Overlay/Toast usw.
+                                    // optional overlay/toast
                                     // showOverlay("Sequence Accepted", "Lumen Emitter ready")
                                 }
                             )
                         }
 
                         else -> {
-                            com.example.indytrail.ui.MenuScreen(
+                            MenuScreen(
                                 calibrationPercent = calibration,
                                 lumenUnlocked = lumenUnlocked,
                                 pathfinderUnlocked = pathfinderUnlocked,
                                 codexUnlocked = codexUnlocked,
                                 onTranslator = { showScanner = true },
-                                onLumen = { /* später */ },
-                                onPathfinder = { /* später */ },
-                                onCodex = { /* später */ }
-                                // Falls deine MenuScreen‑Signatur noch onShowOverlay besitzt:
-                                // , onShowOverlay = { t, s -> showOverlay(t, s) }
+                                onLumen = { /* TODO */ },
+                                onPathfinder = { /* TODO */ },
+                                onCodex = { /* TODO */ }
                             )
                         }
                     }
 
 
-                    // --- Overlay ganz oben rendern
-                    com.example.indytrail.ui.AchievementOverlay(
+                    // Render the achievement overlay above all content
+                    AchievementOverlay(
                         visible = overlayVisible,
                         title = overlayTitle,
                         subtitle = overlaySubtitle,
                         onDismiss = { overlayVisible = false },
-                        logoRes = R.drawable.indy_trail_logo,   // Dateiname ohne .png
+                        logoRes = R.drawable.indy_trail_logo,
                         tintLogoWithPrimary = false
                     )
                 }

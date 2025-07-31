@@ -21,7 +21,7 @@ private val DarkScheme = darkColorScheme(
 fun IndyTrailTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = DarkScheme,
-        typography = Typography, // kommt aus Type.kt
+        typography = Typography, // defined in Type.kt
         content = content
     )
 }

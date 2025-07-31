@@ -232,26 +232,26 @@ private fun LogoBadge(
             val r = minOf(w, h) / 2f
             val center = Offset(w / 2f, h / 2f)
 
-            // Außenring (fein)
+            // outer ring (thin)
             drawCircle(
                 color = ringColor.copy(alpha = 0.35f),
                 radius = r - 2.dp.toPx(),
                 style = Stroke(width = 2.dp.toPx())
             )
-            // Goldring
+            // gold ring
             drawCircle(
                 color = accentColor.copy(alpha = 0.95f),
                 radius = r - 6.dp.toPx(),
                 style = Stroke(width = 2.dp.toPx())
             )
-            // Innenring (cyan)
+            // inner ring (cyan)
             drawCircle(
                 color = ringColor.copy(alpha = 0.9f),
                 radius = r - 12.dp.toPx(),
                 style = Stroke(width = 2.dp.toPx())
             )
 
-            // Rotierende Kerben
+            // rotating notches
             val notchR = r - 9.dp.toPx()
             val notchLen = 6.dp.toPx()
             val count = 8
