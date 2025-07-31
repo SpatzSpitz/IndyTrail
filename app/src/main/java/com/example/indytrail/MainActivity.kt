@@ -1,7 +1,6 @@
 package com.example.indytrail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -10,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import com.example.indytrail.core.ScanRoute
-import com.example.indytrail.core.parseScanUri
 import com.example.indytrail.ui.theme.IndyTrailTheme
 
 class MainActivity : ComponentActivity() {
