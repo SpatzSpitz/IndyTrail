@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
                 var showQuest by remember { mutableStateOf(false) }
                 var currentQuestId by remember { mutableStateOf("Q1") }   // set via QR
                 var questTick by remember { mutableStateOf(0) }
+                var completedQuests by remember { mutableStateOf(setOf<String>()) }
                 // ----- Overlay state (visual only) -----
                 var overlayVisible by remember { mutableStateOf(false) }
                 var overlayTitle by remember { mutableStateOf("") }
@@ -136,9 +137,12 @@ class MainActivity : ComponentActivity() {
                                         // optional hint if not all glyphs are scanned
                                         // showOverlay("Need 4 glyphs", "Scan all glyphs before using the emitter")
                                     }
-                                }
-
-                                ,
+                                },
+                                completed = completedQuests.contains(currentQuestId),
+                                onFinishQuest = {
+                                    completedQuests = completedQuests - currentQuestId
+                                    showQuest = false
+                                },
                                 onBack = { showQuest = false }
                             )
                         }
@@ -150,6 +154,8 @@ class MainActivity : ComponentActivity() {
                                 onBack = { showEmitter = false },
                                 onSuccess = {
                                     showEmitter = false
+                                    completedQuests = completedQuests + currentQuestId
+                                    showQuest = true
                                     // optional overlay/toast
                                     // showOverlay("Sequence Accepted", "Lumen Emitter ready")
                                 }

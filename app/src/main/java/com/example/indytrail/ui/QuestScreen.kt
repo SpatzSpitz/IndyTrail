@@ -28,7 +28,9 @@ fun QuestScreen(
     refreshTick: Int,          // force recomposition after scan
     onScanRequest: () -> Unit, // open scanner
     onBack: () -> Unit,
-    onOpenEmitter: () -> Unit
+    onOpenEmitter: () -> Unit,
+    completed: Boolean = false,
+    onFinishQuest: () -> Unit = {}
 ) {
     val cyan  = MaterialTheme.colorScheme.primary
     val shape = RoundedCornerShape(18.dp)
@@ -154,6 +156,31 @@ fun QuestScreen(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+
+            if (completed) {
+                Spacer(Modifier.height(24.dp))
+                Text(
+                    "Quest Complete",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.SemiBold,
+                        letterSpacing = 1.5.sp
+                    ),
+                    color = cyan
+                )
+                Spacer(Modifier.height(8.dp))
+                Button(
+                    onClick = onFinishQuest,
+                    shape = RoundedCornerShape(14.dp)
+                ) {
+                    Text(
+                        "Finish Quest",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.SemiBold,
+                            letterSpacing = 1.5.sp
+                        )
+                    )
+                }
+            }
         }
     }
 }
