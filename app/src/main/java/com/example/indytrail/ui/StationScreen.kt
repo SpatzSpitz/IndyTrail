@@ -16,6 +16,8 @@ fun StationScreen(
     onBack: () -> Unit,
     onSolved: (Station) -> Unit = {}
 ) {
+    ImmersiveSystemBars()
+
     var input by remember { mutableStateOf("") }
     var feedback by remember { mutableStateOf<String?>(null) }
 

@@ -49,6 +49,8 @@ fun LumenEmitterScreen(
     onBack: () -> Unit,
     onSuccess: () -> Unit
 ) {
+    ImmersiveSystemBars()
+
     val cyan = MaterialTheme.colorScheme.primary
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -211,13 +213,18 @@ fun LumenEmitterScreen(
                 EmitterOverlay(codeVisible)
             }
 
-            Column(
+            Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f)
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .weight(1f),
+                color = MaterialTheme.colorScheme.surface
             ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     verticalAlignment = Alignment.CenterVertically
@@ -322,13 +329,8 @@ fun LumenEmitterScreen(
                     }
                 }
 
-                Spacer(Modifier.height(12.dp))
-
-                Text(
-                    "Expected: " + expected.joinToString("-"),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                    Spacer(Modifier.height(12.dp))
+                }
             }
         }
     }

@@ -184,7 +184,7 @@ fun MenuScreen(
     onPathfinder: () -> Unit,
     onCodex: () -> Unit,
 ) {
-    // If you use immersive system bars you already have ImmersiveSystemBars() elsewhere.
+    ImmersiveSystemBars()
     Column(
         modifier = Modifier
             .fillMaxSize()
