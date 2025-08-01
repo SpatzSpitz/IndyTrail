@@ -151,6 +151,7 @@ class MainActivity : ComponentActivity() {
                                 LumenEmitterScreen(
                                     expected = emitterExpected,
                                     hintGlyphs = emitterHintGlyphs,
+                                    requiredCode = "trail://quest/$currentQuestId",
                                 onBack = { showEmitter = false },
                                 onSuccess = {
                                     showEmitter = false
