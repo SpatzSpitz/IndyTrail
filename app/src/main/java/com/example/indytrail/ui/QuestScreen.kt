@@ -8,10 +8,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
@@ -20,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.example.indytrail.data.QuestStore
 import com.example.indytrail.data.GlyphCatalog     // <- Mapping "PSI" -> sichtbares Zeichen
 import com.example.indytrail.ui.theme.IndyGlyphs  // <- deine eingebettete Glyph-Schrift (optional)
+import kotlinx.coroutines.delay
 
 @Composable
 fun QuestScreen(
@@ -40,6 +46,17 @@ fun QuestScreen(
     val progress = store.snapshot(questId)
     val slots = (1..4).map { i -> progress[i] } // List<String?>
     val foundCount = slots.count { !it.isNullOrBlank() }
+    val questComplete = foundCount == 4
+    var showComplete by remember { mutableStateOf(false) }
+
+    LaunchedEffect(questComplete) {
+        if (questComplete) {
+            delay(800)
+            showComplete = true
+        } else {
+            showComplete = false
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -134,13 +151,14 @@ fun QuestScreen(
 
             Spacer(Modifier.height(12.dp))
 
-// --- TEMP: immer sichtbarer Debug-Button, um Emitter zu öffnen ---
             OutlinedButton(
                 onClick = onOpenEmitter,
+                enabled = foundCount == 4,
+                modifier = Modifier.alpha(if (foundCount == 4) 1f else 0.5f),
                 shape = RoundedCornerShape(14.dp)
             ) {
                 Text(
-                    "Open Lumen Emitter (debug)",
+                    "Open Lumen Emitter",
                     style = MaterialTheme.typography.titleMedium.copy(letterSpacing = 1.2.sp)
                 )
             }
@@ -154,6 +172,41 @@ fun QuestScreen(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+
+            AnimatedVisibility(
+                visible = showComplete,
+                enter = fadeIn() + slideInVertically(),
+                exit = fadeOut()
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 24.dp)
+                ) {
+                    Text(
+                        text = "QUEST COMPLETE",
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 2.sp
+                        ),
+                        color = cyan
+                    )
+                    Spacer(Modifier.height(12.dp))
+                    Button(
+                        onClick = onBack,
+                        shape = RoundedCornerShape(14.dp)
+                    ) {
+                        Text(
+                            "Finish Quest",
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                fontWeight = FontWeight.SemiBold,
+                                letterSpacing = 1.5.sp
+                            )
+                        )
+                    }
+                }
+            }
         }
     }
 }

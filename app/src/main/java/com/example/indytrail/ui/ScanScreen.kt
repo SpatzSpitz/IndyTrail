@@ -1,7 +1,6 @@
 package com.example.indytrail.ui
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,9 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 
@@ -47,26 +43,6 @@ fun ScanScreen(
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-
-    // —— Immerse: Status- & Navigationsleiste im Scanner ausblenden
-    LaunchedEffect(Unit) {
-        val activity = context as Activity
-        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
-        WindowInsetsControllerCompat(activity.window, activity.window.decorView).apply {
-            hide(WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.navigationBars())
-            systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
-    }
-    DisposableEffect(Unit) {
-        onDispose {
-            // beim Verlassen wieder normales Verhalten
-            val activity = context as Activity
-            WindowCompat.setDecorFitsSystemWindows(activity.window, true)
-            WindowInsetsControllerCompat(activity.window, activity.window.decorView)
-                .show(WindowInsetsCompat.Type.systemBars())
-        }
-    }
 
     // —— Kamera-Rechte
     var hasPermission by remember {

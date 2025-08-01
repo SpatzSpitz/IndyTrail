@@ -135,125 +135,131 @@ fun LumenEmitterScreen(
                 modifier = Modifier.size(1.dp)
             )
 
-            // --- Fortschritts‑LEDs ---
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                repeat(expected.size) { i ->
-                    val on = i < idx
-                    Box(
-                        Modifier
-                            .size(12.dp)
-                            .clip(CircleShape)
-                            .background(if (on) cyan else cyan.copy(alpha = 0.2f))
-                    )
-                }
-            }
-
-            Spacer(Modifier.height(12.dp))
-
-            // --- Optional: Torch‑Buttons ---
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Button(
-                    enabled = camera != null,
-                    onClick = { camera?.cameraControl?.enableTorch(true) }
-                ) { Text("Torch ON") }
-
-                OutlinedButton(
-                    enabled = camera != null,
-                    onClick = { camera?.cameraControl?.enableTorch(false) }
-                ) { Text("Torch OFF") }
-            }
-
-            Spacer(Modifier.height(12.dp))
-
-            // --- Runen‑Zeile aus expected (sichtbare Hinweise) ---
-            if (expectedSymbols.isNotEmpty()) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    expectedSymbols.forEach { sym ->
-                        Surface(
-                            shape = RoundedCornerShape(10.dp),
-                            tonalElevation = 2.dp,
-                            border = BorderStroke(1.dp, cyan.copy(alpha = 0.35f)),
-                            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)
-                        ) {
-                            Box(
-                                Modifier
-                                    .size(44.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = sym,
-                                    // Falls du eine eigene Glyph‑Schrift nutzt:
-                                    // fontFamily = IndyGlyphs,
-                                    style = MaterialTheme.typography.titleLarge.copy(
-                                        letterSpacing = 2.sp
-                                    ),
-                                    color = cyan
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            // --- (Optional) zusätzlich die vom Quest gelieferten Codes als Chips ---
-            if (hintGlyphs.isNotEmpty()) {
-                Spacer(Modifier.height(8.dp))
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    hintGlyphs.forEach { code ->
-                        AssistChip(onClick = {}, label = { Text(code ?: "?") })
-                    }
-                }
-            }
-
             Spacer(Modifier.height(16.dp))
 
-            // --- 3x3‑Tastenfeld (1..9) ---
-            val keys = (1..9).map(Int::toString)
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                for (r in 0 until 3) {
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                tonalElevation = 4.dp,
+                border = BorderStroke(1.dp, cyan.copy(alpha = 0.35f)),
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.96f)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    // --- Fortschritts‑LEDs ---
                     Row(
-                        Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        for (c in 1..3) {
-                            val label = keys[r * 3 + (c - 1)]
-                            Button(
-                                onClick = { press(label) },
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(56.dp),
-                                shape = RoundedCornerShape(12.dp)
+                        repeat(expected.size) { i ->
+                            val on = i < idx
+                            Box(
+                                Modifier
+                                    .size(12.dp)
+                                    .clip(CircleShape)
+                                    .background(if (on) cyan else cyan.copy(alpha = 0.2f))
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(12.dp))
+
+                    // --- Optional: Torch‑Buttons ---
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Button(
+                            enabled = camera != null,
+                            onClick = { camera?.cameraControl?.enableTorch(true) }
+                        ) { Text("Torch ON") }
+
+                        OutlinedButton(
+                            enabled = camera != null,
+                            onClick = { camera?.cameraControl?.enableTorch(false) }
+                        ) { Text("Torch OFF") }
+                    }
+
+                    Spacer(Modifier.height(12.dp))
+
+                    // --- Runen‑Zeile aus expected (sichtbare Hinweise) ---
+                    if (expectedSymbols.isNotEmpty()) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            expectedSymbols.forEach { sym ->
+                                Surface(
+                                    shape = RoundedCornerShape(10.dp),
+                                    tonalElevation = 2.dp,
+                                    border = BorderStroke(1.dp, cyan.copy(alpha = 0.35f)),
+                                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)
+                                ) {
+                                    Box(
+                                        Modifier
+                                            .size(44.dp),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            text = sym,
+                                            style = MaterialTheme.typography.titleLarge.copy(
+                                                letterSpacing = 2.sp
+                                            ),
+                                            color = cyan
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // --- (Optional) zusätzlich die vom Quest gelieferten Codes als Chips ---
+                    if (hintGlyphs.isNotEmpty()) {
+                        Spacer(Modifier.height(8.dp))
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            hintGlyphs.forEach { code ->
+                                AssistChip(onClick = {}, label = { Text(code ?: "?") })
+                            }
+                        }
+                    }
+
+                    Spacer(Modifier.height(16.dp))
+
+                    // --- 3x3‑Tastenfeld (1..9) ---
+                    val keys = (1..9).map(Int::toString)
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        for (r in 0 until 3) {
+                            Row(
+                                Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(12.dp)
                             ) {
-                                Text(
-                                    label,
-                                    style = MaterialTheme.typography.titleMedium.copy(
-                                        fontWeight = FontWeight.SemiBold,
-                                        letterSpacing = 1.2.sp
-                                    )
-                                )
+                                for (c in 1..3) {
+                                    val label = keys[r * 3 + (c - 1)]
+                                    Button(
+                                        onClick = { press(label) },
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .height(56.dp),
+                                        shape = RoundedCornerShape(12.dp)
+                                    ) {
+                                        Text(
+                                            label,
+                                            style = MaterialTheme.typography.titleMedium.copy(
+                                                fontWeight = FontWeight.SemiBold,
+                                                letterSpacing = 1.2.sp
+                                            )
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-
-            Spacer(Modifier.height(12.dp))
-
-            // Debug‑Anzeige
-            Text(
-                "Expected: " + expected.joinToString("-"),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
         }
     }
 }

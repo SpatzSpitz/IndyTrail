@@ -12,6 +12,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import com.example.indytrail.core.ScanRoute
 import com.example.indytrail.core.parseScanUri
+import com.example.indytrail.ui.ImmersiveSystemBars
 import com.example.indytrail.ui.theme.IndyTrailTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             IndyTrailTheme {
+                ImmersiveSystemBars()
 
                 // -------- Quest‑Store --------
                 val questStore = remember { com.example.indytrail.data.QuestStore() }
