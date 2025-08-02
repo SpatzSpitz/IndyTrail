@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
                 // ----- Quest store -----
                 val questStore = remember { QuestStore() }
                 var showEmitter by remember { mutableStateOf(false) }
+                var showPathfinder by remember { mutableStateOf(false) }
                 var emitterExpected by remember { mutableStateOf(listOf("1","2","3","4")) } // test sequence
                 val emitterHintGlyphs by remember { mutableStateOf(listOf<String?>()) }
                 var showQuest by remember { mutableStateOf(false) }
@@ -163,6 +164,10 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+                        showPathfinder -> {
+                            PathfinderScreen(onBack = { showPathfinder = false })
+                        }
+
                         else -> {
                             MenuScreen(
                                 calibrationPercent = calibration,
@@ -171,7 +176,7 @@ class MainActivity : ComponentActivity() {
                                 codexUnlocked = codexUnlocked,
                                 onTranslator = { showScanner = true },
                                 onLumen = { /* TODO */ },
-                                onPathfinder = { /* TODO */ },
+                                onPathfinder = { showPathfinder = true },
                                 onCodex = { /* TODO */ }
                             )
                         }
