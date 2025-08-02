@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
                 var scannedIds by remember { mutableStateOf(setOf<String>()) }  // deduplicate station scans
 
                 val lumenUnlocked      = true // calibration >= 20
-                val pathfinderUnlocked = calibration >= 60
+                val pathfinderUnlocked = true // unlocked from start
                 val codexUnlocked      = calibration >= 85
 
                 // -------- Navigation --------
