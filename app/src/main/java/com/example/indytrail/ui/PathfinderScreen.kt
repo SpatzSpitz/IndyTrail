@@ -83,13 +83,17 @@ fun PathfinderScreen(
     }
 
     val distance = remember(currentLocation, targetLocation) {
-        if (currentLocation != null && targetLocation != null) {
-            currentLocation!!.distanceTo(targetLocation).roundToInt()
+        val current = currentLocation
+        val target = targetLocation
+        if (current != null && target != null) {
+            current.distanceTo(target).roundToInt()
         } else null
     }
     val bearing = remember(currentLocation, targetLocation) {
-        if (currentLocation != null && targetLocation != null) {
-            currentLocation!!.bearingTo(targetLocation)
+        val current = currentLocation
+        val target = targetLocation
+        if (current != null && target != null) {
+            current.bearingTo(target)
         } else null
     }
 
