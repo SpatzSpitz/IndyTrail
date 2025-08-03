@@ -7,7 +7,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.location.GeomagneticField
+import android.hardware.GeomagneticField
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -97,6 +97,42 @@ fun PathfinderScreen(
     var deviceAzimuth by remember { mutableStateOf(0f) }
     var lastRawAzimuth by remember { mutableStateOf(0f) }
 
+    fun handleLocation(loc: Location) {
+        if (loc.accuracy > PathfinderParams.ACCURACY_REJECT) return
+        if (System.currentTimeMillis() - loc.time > 3000) return
+        if (warmUpCount < PathfinderParams.WARM_UP_COUNT) {
+            warmUpCount++
+            return
+        }
+        val medLat = median(buffer.map { it.latitude })
+        val medLng = median(buffer.map { it.longitude })
+        val medianLoc = Location("").apply { latitude = medLat; longitude = medLng }
+        if (buffer.isNotEmpty()) {
+            val dist = loc.distanceTo(medianLoc)
+            if (dist > 1.5f * loc.accuracy) return
+        }
+        if (buffer.size == 5) buffer.removeAt(0)
+        buffer.add(loc)
+        val newMedLat = median(buffer.map { it.latitude })
+        val newMedLng = median(buffer.map { it.longitude })
+        val hold = loc.speed < PathfinderParams.STATIONARY_SPEED &&
+            prevSmoothed != null &&
+            smoothed != null &&
+            smoothed!!.distanceTo(prevSmoothed!!) < 0.8f
+        val alpha = if (hold) 0.05f else PathfinderParams.EMA_ALPHA_POSITION
+        val newLat = alpha * newMedLat + (1 - alpha) * (smoothed?.latitude ?: newMedLat)
+        val newLng = alpha * newMedLng + (1 - alpha) * (smoothed?.longitude ?: newMedLng)
+        prevSmoothed = smoothed
+        smoothed = Location("").apply {
+            latitude = newLat
+            longitude = newLng
+            speed = loc.speed
+            altitude = loc.altitude
+        }
+        currAccuracy = loc.accuracy
+        if (sampling) samplingFixes.add(Location(loc))
+    }
+
     DisposableEffect(hasPermission, fusedAvailable) {
         if (hasPermission) {
             val callback = object : LocationCallback() {
@@ -185,40 +221,6 @@ fun PathfinderScreen(
             anchorTimestamp = System.currentTimeMillis()
             sampling = false
         }
-    }
-
-    fun handleLocation(loc: Location) {
-        if (loc.accuracy > PathfinderParams.ACCURACY_REJECT) return
-        if (System.currentTimeMillis() - loc.time > 3000) return
-        if (warmUpCount < PathfinderParams.WARM_UP_COUNT) {
-            warmUpCount++
-            return
-        }
-        // Outlier and buffer
-        val medLat = median(buffer.map { it.latitude })
-        val medLng = median(buffer.map { it.longitude })
-        val medianLoc = Location("").apply { latitude = medLat; longitude = medLng }
-        if (buffer.isNotEmpty()) {
-            val dist = loc.distanceTo(medianLoc)
-            if (dist > 1.5f * loc.accuracy) return
-        }
-        if (buffer.size == 5) buffer.removeAt(0)
-        buffer.add(loc)
-        val newMedLat = median(buffer.map { it.latitude })
-        val newMedLng = median(buffer.map { it.longitude })
-        val hold = loc.speed < PathfinderParams.STATIONARY_SPEED && prevSmoothed != null && smoothed != null && smoothed!!.distanceTo(prevSmoothed!!) < 0.8f
-        val alpha = if (hold) 0.05f else PathfinderParams.EMA_ALPHA_POSITION
-        val newLat = alpha * newMedLat + (1 - alpha) * (smoothed?.latitude ?: newMedLat)
-        val newLng = alpha * newMedLng + (1 - alpha) * (smoothed?.longitude ?: newMedLng)
-        prevSmoothed = smoothed
-        smoothed = Location("").apply {
-            latitude = newLat
-            longitude = newLng
-            speed = loc.speed
-            altitude = loc.altitude
-        }
-        currAccuracy = loc.accuracy
-        if (sampling) samplingFixes.add(Location(loc))
     }
 
     val distanceInfo = remember(smoothed, target) {
