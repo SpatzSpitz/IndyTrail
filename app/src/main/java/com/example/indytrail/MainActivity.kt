@@ -15,6 +15,7 @@ import com.example.indytrail.core.parseScanUri
 import com.example.indytrail.data.GlyphCatalog
 import com.example.indytrail.data.QuestStore
 import com.example.indytrail.data.Stations
+import com.example.indytrail.pathfinder.PathfinderScreen
 import com.example.indytrail.ui.*
 import com.example.indytrail.ui.theme.IndyTrailTheme
 
@@ -60,13 +61,13 @@ class MainActivity : ComponentActivity() {
                 var scannedIds by remember { mutableStateOf(setOf<String>()) }  // deduplicate station scans
 
                 val lumenUnlocked      = true // calibration >= 20
-                val pathfinderUnlocked = calibration >= 60
+                val pathfinderUnlocked = true
                 val codexUnlocked      = calibration >= 85
 
                 // -------- Navigation --------
                 var showScanner by remember { mutableStateOf(false) }
+                var showPathfinder by remember { mutableStateOf(false) }
                 var currentStationId by remember { mutableStateOf<String?>(null) }
-
                 // Root container to keep the overlay above other content
                 Box(Modifier.fillMaxSize()) {
 
@@ -162,6 +163,10 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         }
+                        showPathfinder -> {
+                            PathfinderScreen(onBack = { showPathfinder = false })
+                        }
+
 
                         else -> {
                             MenuScreen(
@@ -171,7 +176,7 @@ class MainActivity : ComponentActivity() {
                                 codexUnlocked = codexUnlocked,
                                 onTranslator = { showScanner = true },
                                 onLumen = { /* TODO */ },
-                                onPathfinder = { /* TODO */ },
+                                onPathfinder = { showPathfinder = true },
                                 onCodex = { /* TODO */ }
                             )
                         }
