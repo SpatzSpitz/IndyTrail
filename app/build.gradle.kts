@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
     // Tests / Debug
     testImplementation(libs.junit)
