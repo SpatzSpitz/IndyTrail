@@ -7,7 +7,12 @@ import android.location.LocationManager
 import android.os.Looper
 import com.example.indytrail.pathfinder.PathfinderConfig
 import com.example.indytrail.pathfinder.util.LatLng
-import com.google.android.gms.location.*
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -86,18 +91,14 @@ class LocationRepository(private val context: Context) {
             .setMinUpdateDistanceMeters(0f)
             .build()
 
-        val useFused = client != null
-        if (useFused) {
-            client!!.requestLocationUpdates(request, fusedCallback, Looper.getMainLooper())
+        val fused = client
+        if (fused != null) {
+            fused.requestLocationUpdates(request, fusedCallback, Looper.getMainLooper())
+            awaitClose { fused.removeLocationUpdates(fusedCallback) }
         } else {
-            manager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, PathfinderConfig.REQUEST_INTERVAL_MS, 0f) { loc ->
-                handle(loc)
-            }
-        }
-
-        awaitClose {
-            if (useFused) client?.removeLocationUpdates(fusedCallback)
-            else manager?.removeUpdates { }
+            val listener = android.location.LocationListener { loc -> handle(loc) }
+            manager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, PathfinderConfig.REQUEST_INTERVAL_MS, 0f, listener)
+            awaitClose { manager?.removeUpdates(listener) }
         }
     }
 }

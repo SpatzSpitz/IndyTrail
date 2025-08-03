@@ -29,6 +29,7 @@ import com.example.indytrail.pathfinder.model.PermissionState
 import com.example.indytrail.pathfinder.model.SignalQuality
 import com.example.indytrail.pathfinder.PathfinderConfig
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PathfinderScreen(
     onBack: () -> Unit,
@@ -79,9 +80,10 @@ fun PathfinderScreen(
                     }
                 }
                 PermissionState.GRANTED -> {
-                    if (state.errorMessage != null) {
+                    val error = state.errorMessage
+                    if (error != null) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(state.errorMessage)
+                            Text(error)
                             Spacer(Modifier.height(8.dp))
                             Button(onClick = {
                                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
@@ -90,46 +92,52 @@ fun PathfinderScreen(
                         }
                     } else if (state.warmUpActive && state.current == null) {
                         Text("Acquiring position…")
-                    } else if (state.anchor == null) {
-                        if (state.savingAnchor) {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                CircularProgressIndicator()
-                                Spacer(Modifier.height(8.dp))
-                                Text("Fixing…")
+                    } else {
+                        val anchor = state.anchor
+                        if (anchor == null) {
+                            if (state.savingAnchor) {
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    CircularProgressIndicator()
+                                    Spacer(Modifier.height(8.dp))
+                                    Text("Fixing…")
+                                }
+                            } else {
+                                Button(onClick = { viewModel.saveAnchor() }, enabled = state.current != null) {
+                                    Text("Save Current Location")
+                                }
                             }
                         } else {
-                            Button(onClick = { viewModel.saveAnchor() }, enabled = state.current != null) {
-                                Text("Save Current Location")
-                            }
-                        }
-                    } else {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("Target: ${state.anchor.latitude.format()} , ${state.anchor.longitude.format()}")
-                            Text("Current: ${state.current?.latitude?.format()} , ${state.current?.longitude?.format()}")
-                            Spacer(Modifier.height(8.dp))
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                val qColor = when (state.signalQuality) {
-                                    SignalQuality.GOOD -> MaterialTheme.colorScheme.primary
-                                    SignalQuality.MEDIUM -> MaterialTheme.colorScheme.tertiary
-                                    SignalQuality.WEAK -> MaterialTheme.colorScheme.error
-                                }
-                                Box(modifier = Modifier.size(8.dp).background(qColor, shape = CircleShape))
-                                Spacer(Modifier.width(4.dp))
-                                Text("Distance: ${state.distanceM?.toInt() ?: 0} m")
-                            }
-                            Spacer(Modifier.height(16.dp))
-                            Icon(
-                                Icons.Filled.Navigation,
-                                contentDescription = null,
-                                modifier = Modifier.size(72.dp).rotate(state.arrowDeg ?: 0f),
-                                tint = MaterialTheme.colorScheme.primary.copy(alpha = if ((state.currentAccuracy ?: 0f) > PathfinderConfig.WEAK_SIGNAL_ACCURACY_M) 0.4f else 1f)
-                            )
-                            if (state.arrived) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text("Target: ${anchor.latitude.format()} , ${anchor.longitude.format()}")
+                                val current = state.current
+                                Text("Current: ${current?.latitude?.format()} , ${current?.longitude?.format()}")
                                 Spacer(Modifier.height(8.dp))
-                                Text("Arrived", fontWeight = FontWeight.Bold)
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    val qColor = when (state.signalQuality) {
+                                        SignalQuality.GOOD -> MaterialTheme.colorScheme.primary
+                                        SignalQuality.MEDIUM -> MaterialTheme.colorScheme.tertiary
+                                        SignalQuality.WEAK -> MaterialTheme.colorScheme.error
+                                    }
+                                    Box(modifier = Modifier.size(8.dp).background(qColor, shape = CircleShape))
+                                    Spacer(Modifier.width(4.dp))
+                                    Text("Distance: ${state.distanceM?.toInt() ?: 0} m")
+                                }
+                                Spacer(Modifier.height(16.dp))
+                                Icon(
+                                    Icons.Filled.Navigation,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(72.dp).rotate(state.arrowDeg ?: 0f),
+                                    tint = MaterialTheme.colorScheme.primary.copy(
+                                        alpha = if ((state.currentAccuracy ?: 0f) > PathfinderConfig.WEAK_SIGNAL_ACCURACY_M) 0.4f else 1f
+                                    )
+                                )
+                                if (state.arrived) {
+                                    Spacer(Modifier.height(8.dp))
+                                    Text("Arrived", fontWeight = FontWeight.Bold)
+                                }
+                                Spacer(Modifier.height(16.dp))
+                                Button(onClick = { viewModel.reset() }) { Text("Reset") }
                             }
-                            Spacer(Modifier.height(16.dp))
-                            Button(onClick = { viewModel.reset() }) { Text("Reset") }
                         }
                     }
                 }

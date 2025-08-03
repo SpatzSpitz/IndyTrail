@@ -23,6 +23,16 @@ class HeadingRepository(private val context: Context) {
         var gpsCourse: Float? = null
         var lastLocation: LocationRepository.Sample? = null
 
+        fun maybeEmit() {
+            val device = lastAzimuth ?: return
+            val course = gpsCourse
+            val loc = lastLocation
+            if (loc == null) { trySend(device); return }
+            val w = ((loc.speed - 0.5f) / 1.5f).coerceIn(0f, 1f)
+            val mix = if (course != null) GeoUtils.normalize((1 - w) * device + w * course) else device
+            trySend(mix)
+        }
+
         val listener = object : SensorEventListener {
             override fun onSensorChanged(event: SensorEvent) {
                 if (event.sensor.type != Sensor.TYPE_ROTATION_VECTOR) return
@@ -45,16 +55,6 @@ class HeadingRepository(private val context: Context) {
             }
 
             override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
-        }
-
-        fun maybeEmit() {
-            val device = lastAzimuth ?: return
-            val course = gpsCourse
-            val loc = lastLocation
-            if (loc == null) { trySend(device); return }
-            val w = ((loc.speed - 0.5f) / 1.5f).coerceIn(0f, 1f)
-            val mix = if (course != null) GeoUtils.normalize((1 - w) * device + w * course) else device
-            trySend(mix)
         }
 
         sensorManager.registerListener(listener, rotation, SensorManager.SENSOR_DELAY_GAME)
